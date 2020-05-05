@@ -17,6 +17,7 @@ class ProfilesController < ApplicationController
     @pending_friendships = @my_friendship.where(status: 'pending')
     @friendships = @my_friendship.where(status: 'accepted')
     @friend_check = Friendship.where(asker_id: @profile.user.id, receiver_id: current_user.id).or(Friendship.where(receiver_id: @profile.user.id, asker_id: current_user.id ))
+    @declined_request = @friend_check.where(status: 'declined')
   end
 
   def new

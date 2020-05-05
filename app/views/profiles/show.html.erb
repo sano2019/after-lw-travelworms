@@ -34,13 +34,9 @@
                 <div class="text-center">
                     <%= link_to 'Edit my profile', edit_profile_path(@profile), class: "btn btn-primary m-3" %>
                 </div>
-                <% elsif @friend_check.empty? %>
+                <% elsif (@friend_check.empty?) || (@declined_request.empty?) %>
                 <div class="text-center">
                     <%= link_to 'Befriend', friendships_path(receiver_id: @profile), method: :post, class: "btn btn-primary m-3" %>
-                </div>
-                <% else %>
-                <div class="text-center">
-                    <%= link_to 'Back to user search', profiles_path, class: "btn btn-primary m-3" %>
                 </div>
                 <% end %>
                 <% if current_user.id == params[:id].to_i %>
