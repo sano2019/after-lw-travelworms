@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_31_143553) do
+
+ActiveRecord::Schema.define(version: 2020_04_01_102715) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +71,16 @@ ActiveRecord::Schema.define(version: 2020_03_31_143553) do
     t.index ["user_id"], name: "index_bookshelves_on_user_id"
   end
 
+  create_table "friendships", force: :cascade do |t|
+    t.bigint "asker_id"
+    t.bigint "receiver_id"
+    t.string "status", default: "pending"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["asker_id"], name: "index_friendships_on_asker_id"
+    t.index ["receiver_id"], name: "index_friendships_on_receiver_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -109,6 +121,8 @@ ActiveRecord::Schema.define(version: 2020_03_31_143553) do
   add_foreign_key "bookshelf_items", "books"
   add_foreign_key "bookshelf_items", "bookshelves"
   add_foreign_key "bookshelves", "users"
+  add_foreign_key "friendships", "users", column: "asker_id"
+  add_foreign_key "friendships", "users", column: "receiver_id"
   add_foreign_key "profiles", "users"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"
