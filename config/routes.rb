@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   resources :bookshelves do
     resources :bookshelf_items
   end
+
+  get 'team', to: 'pages#team', as: :team
 end

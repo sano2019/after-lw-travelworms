@@ -28,11 +28,14 @@
 
             <% else %>
             <li>
-                <%= link_to "Create profile", "profiles/new", class: "nav-item" %>
+                <%= link_to "Create Profile", "profiles/new", class: "nav-item" %>
             </li>
             <% end %>
             <li>
               <%= link_to 'Find Users', profiles_path, class: "nav-item"  %>
+            </li>
+            <li>
+              <%= link_to 'Our Team', team_path, class: "nav-item" %>
             </li>
             <li>
                 <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-item" %>
