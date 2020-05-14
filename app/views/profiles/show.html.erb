@@ -80,22 +80,22 @@
         <!--   </div> -->
     </div>
     <div class="container">
-    <% if !@friend_check.where(status: 'accepted').empty? %>
-    <h5 class="text-center mt-3">Your friend's bookshelves</h5>
-    <% @bookshelves = Bookshelf.where(user_id: @profile.id) %>
-    <div class="row justify-content-center">
-    <% @bookshelves.each do |bookshelf| %>
-    <div class="col-md-4 flex-item p-20">
+      <% if !@friend_check.where(status: 'accepted').empty? %>
+        <h5 class="text-center mt-3">Your friend's bookshelves</h5>
+        <% @bookshelves = Bookshelf.where(user_id: @profile.id) %>
+        <div class="row justify-content-center">
+          <% @bookshelves.each do |bookshelf| %>
+        <div class="col-md-4 flex-item p-20">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body-bookshelf">
                 <%= link_to bookshelf.name.capitalize, bookshelf, class: "link-title"%>
                 <!-- start counter books -->
                 <% if bookshelf.bookshelf_item_ids.length == 1 %>
-                <p class="card-text"><em>
-                        <%= "1 book" %></em></p>
+                <p class="card-text-bookshelf font-italic">
+                        <%= "1 book" %></p>
                 <% else %>
-                <p class="card-text"><em>
-                        <%= "#{bookshelf.bookshelf_item_ids.length} books" %></em></p>
+                <p class="card-text-bookshelf font-italic">
+                        <%= "#{bookshelf.bookshelf_item_ids.length} books" %></p>
                 <%=  %>
                 <% end %>
                 <!-- end counter books -->
@@ -115,7 +115,7 @@
                 </div>
                 <% end %>
                 <!-- end progress-bar -->
-                <p class="card-text">
+                <p class="card-text-bookshelf">
                     <%= bookshelf.description %>
                 </p>
             </div>

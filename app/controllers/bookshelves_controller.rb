@@ -2,7 +2,7 @@ class BookshelvesController < ApplicationController
   def index
     @bookshelves = current_user.bookshelves
   end
-  # we don't need a show, when you click on a bookshelf, redirecting to bookshelf_items??
+
   def show
     @bookshelf = Bookshelf.find(params[:id])
     @bookshelf_items = BookshelfItem.where(bookshelf_id: @bookshelf.id)
@@ -19,7 +19,6 @@ class BookshelvesController < ApplicationController
   def create
     @bookshelf = Bookshelf.new(bookshelf_params)
     @bookshelf.user = current_user
-
     if @bookshelf.save
       redirect_to bookshelves_path, notice: 'successfully created.'
     else
@@ -40,7 +39,6 @@ class BookshelvesController < ApplicationController
   def destroy
     @bookshelf = Bookshelf.find(params[:id])
     @bookshelf.destroy
-    # raise
     redirect_to bookshelves_path
   end
 

@@ -81,10 +81,10 @@ end
 
 puts "Cleaning DB"
 User.destroy_all
-# Book.destroy_all
+Book.destroy_all
 
 puts "Scraping and creating Books"
-#scrape_countries
+scrape_countries
 # adding a description with the books without one
 # books_without_description = Book.where(description: "")
 # books_without_description.each do |book|

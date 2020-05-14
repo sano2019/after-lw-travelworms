@@ -5,10 +5,7 @@ class BookshelfItemsController < ApplicationController
     @bookshelf_items = BookshelfItem.where(bookshelf_id: @bookshelf.id)
   end
 
-  def show
-    # @bookshelf_item = BookshelfItem.find(params[:id])
-  end
-
+  # We don't need a show, when you click on a book, redirecting to book_path
   def new
     @bookshelf_item = BookshelfItem.new
   end
@@ -27,7 +24,6 @@ class BookshelfItemsController < ApplicationController
 
   def update
     @bookshelf_item = BookshelfItem.find(params[:id])
-    # raise
     if @bookshelf_item.update(bookshelf_item_params)
       respond_to do |format|
         format.html { redirect_back fallback_location: { action: "show"} }
@@ -39,15 +35,11 @@ class BookshelfItemsController < ApplicationController
         format.js  # <-- idem
       end
     end
-    # raise
-    # redirect_back fallback_location: { action: "show"}
-    # redirect_to bookshelves_path(@bookshelf_item), notice: 'update done'
   end
 
   def destroy
     @bookshelf_item = BookshelfItem.find(params[:bookshelf_id])
     @bookshelf_item.destroy
-    # raise
     redirect_to bookshelf_path
   end
 

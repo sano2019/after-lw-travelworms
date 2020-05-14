@@ -1,13 +1,8 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-12 col-lg-6">
-      <% if @bookshelf_items.length == 1 %>
-      <% cucu = "book" %>
-      <% else %>
-      <% cucu = "books" %>
-      <% end %>
       <h4 class="text-center"><%= @bookshelf.name.capitalize %></h4>
-      <h6 class="text-center" style="font-family: Mukta Mahee">(<%= @bookshelf_items.length %> <%= cucu %>)</h6>
+      <h6 class="text-center font-italic"><%= @bookshelf_items.length %> <%= @bookshelf_items.length == 1 ? "book" : "books" %></h6>
         <button id="myBtn" title="Go to top">Up</button>
       <p class="text-center"><%= @bookshelf.description %></p>
       <% if current_user.id == @bookshelf.user_id %>
@@ -29,7 +24,6 @@
             <%= simple_form_for [item.bookshelf, item], remote: true do |f| %>
             <li class="list-group-item border-0"><%= f.select :status, { collection: ['to read', 'reading', 'completed'], selected: item.status }, {}, { onchange: 'this.form.submit();'} %></li>
             <% end %>
-            <%#= f.button :submit %>
             </div>
               <!-- end form-->
             <% else %>
